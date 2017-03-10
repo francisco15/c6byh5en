@@ -3,6 +3,8 @@ module Api
 		class ProductsController < ApplicationController
 			protect_from_forgery with: :null_session
 
+			before_action :set_product, only: [:update, :destroy]
+
 			def index
 				render json: Product.all
 			end
@@ -30,6 +32,10 @@ module Api
 			end
 
 			private
+				def set_product
+      		@product = Product.find(params[:id])
+    		end
+				
 				def product_params
 					params.require(:product).permit(:name, :price)
 				end
