@@ -1,10 +1,9 @@
 module Api
 	module V1
 		class ProductsController < ApplicationController
-			respond_to :json
 
 			def index
-				respond_with Product.all
+				render json: Product.all
 			end
 
 		end
